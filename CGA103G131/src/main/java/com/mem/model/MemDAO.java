@@ -28,9 +28,7 @@ public class MemDAO implements I_MemDAO{
 		private static final String DELETE = 
 			"DELETE FROM mem where mem_no = ?";
 		private static final String UPDATE = 
-			"UPDATE mem set mem_acc =?,mem_pwd=?,acc_status=?,mem_name=?,mem_gender=?,mem_email=?,mem_mobile=?,mem_city=?,mem_dist=?,mem_addr=?,mem_reg_date=?,mem_pic=?,mem_report_count=?,mem_card=? where mem_no = ?";
-		private static final String UPDATEMEM = 
-				"UPDATE mem set mem_acc =?,mem_pwd=?,acc_status=?,mem_name=?,mem_gender=?,mem_email=?,mem_mobile=?,mem_city=?,mem_dist=?,mem_addr=?,mem_reg_date=?,mem_pic=?,mem_report_count=?,mem_card=? where mem_no = ?";
+				"UPDATE mem set mem_pwd=?,mem_name=?,mem_gender=?,mem_email=?,mem_mobile=?,mem_city=? where mem_no = ?";
 		private static final String LOGIN = 
 				"SELECT mem_no,mem_acc,mem_pwd,acc_status,mem_name,mem_gender,mem_email,mem_mobile,mem_city,mem_dist,mem_addr,mem_reg_date,mem_pic,mem_report_count,mem_card  FROM mem WHERE  mem_email= ? and mem_pwd= ?"; 
 		private static final String GET_ONE_BY_MAIL = 
@@ -95,23 +93,14 @@ public class MemDAO implements I_MemDAO{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, memVO.getMem_acc());
-			pstmt.setString(2, memVO.getMem_pwd());
-			pstmt.setInt(3, memVO.getAcc_status());
-			pstmt.setString(4, memVO.getMem_name());
-			pstmt.setString(5,memVO.getMem_gender());
-			pstmt.setString(6, memVO.getMem_email());
-			pstmt.setString(7, memVO.getMem_mobile());
-			pstmt.setString(8, memVO.getMem_city());
-			pstmt.setString(9, memVO.getMem_dist());
-			pstmt.setString(10, memVO.getMem_addr());
-			pstmt.setDate(11, memVO.getMem_reg_date());
-			pstmt.setBytes(12, memVO.getMem_pic());
-			pstmt.setInt(13, memVO.getMem_report_count());
-			pstmt.setString(14, memVO.getMem_card());
-			pstmt.setInt(15, memVO.getMem_no());
+			pstmt.setString(1, memVO.getMem_pwd());
+			pstmt.setString(2, memVO.getMem_name());
+			pstmt.setString(3,memVO.getMem_gender());
+			pstmt.setString(4, memVO.getMem_email());
+			pstmt.setString(5, memVO.getMem_mobile());
+			pstmt.setString(6, memVO.getMem_city());
+			pstmt.setInt(7, memVO.getMem_no());
 			
-
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -267,7 +256,7 @@ public class MemDAO implements I_MemDAO{
 				memVO.setMem_pwd(rs.getString("mem_pwd"));
 				memVO.setAcc_status(rs.getInt("acc_status"));
 				memVO.setMem_name(rs.getString("mem_name"));
-				memVO.setMem_gender(rs.getString("mem_gender"));
+				memVO.setMem_gender(rs.getString("mem_name"));
 				memVO.setMem_email(rs.getString("mem_email"));
 				memVO.setMem_mobile(rs.getString("mem_mobile"));
 				memVO.setMem_city(rs.getString("mem_city"));
@@ -499,49 +488,10 @@ public class MemDAO implements I_MemDAO{
 			}
 		}
 	}
+
 	@Override
 	public void updateMem(MemVO memVO) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-
-		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATEMEM);
-
-			pstmt.setString(1, memVO.getMem_pwd());
-			pstmt.setString(2, memVO.getMem_name());
-			pstmt.setString(3,memVO.getMem_gender());
-			pstmt.setString(4, memVO.getMem_email());
-			pstmt.setString(5, memVO.getMem_mobile());
-			pstmt.setString(6, memVO.getMem_city());
-			pstmt.setInt(7, memVO.getMem_no());
-			
-			pstmt.executeUpdate();
-
-			// Handle any driver errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		
+		// TODO Auto-generated method stub
 		
 	}
-
 }

@@ -28,12 +28,16 @@
             <div class="collapse show" id="collapse-1" data-parent="#accordion1">
               <!-- 這邊有加 flex-column align-items-start 讓按鈕垂直排列靠左 因為註解調不需要的欄位也會跑版 -->
               <div class="accordion-content d-flex flex-column align-items-start">
+               <a href="<%=request.getContextPath()%>/frontend/signin/forgetPassword.jsp">
                 <button type="button" class="btn">
-                  密碼修改
+                  忘記密碼
                 </button>
+                 </a>
+                  <a href="<%=request.getContextPath()%>/frontend/mem/listOneMem.jsp">
                 <button type="button" class="btn">
                   基本資料修改
                 </button>
+                 </a>
                 <button type="button" class="btn">
                   系統訊息
                 </button>

@@ -64,6 +64,8 @@ pageContext.setAttribute("snm", snm);
                   >
                   <!--已登入顯現帳號 -->
                   <c:if test="${memVO!=null}">
+                  	<img alt="會員頭貼" src="<%=request.getContextPath() %>/PicReader.do?action=getMemPhoto&mem_no=${memVO.mem_no}"
+					class="rounded-circle" width="60px" height="60px">
                ${memVO.mem_name}
                </c:if>
                   <c:if test="${memVO==null}">帳戶
@@ -77,7 +79,7 @@ pageContext.setAttribute("snm", snm);
                   <c:if test="${memVO==null}">
                   <a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/signin/login.jsp">會員登入</a>
                    </c:if>
-                  <a class="dropdown-item" href="signin/addMem.jsp">註冊</a>
+                  <a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/signin/addMem.jsp">註冊</a>
                   <c:if test ="${store_acc==null}">
                   <a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/store/storeLogin.jsp">廠商登入</a>
                   </c:if>
